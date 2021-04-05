@@ -1,0 +1,42 @@
+<aura:component controller="SS_ProductsPageController" implements="forceCommunity:availableForAllPageTypes" access="global">
+    <aura:attribute name="searchKeyword" type="String"/>
+    <aura:attribute type="PricebookEntry[]" name="products"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <lightning:layout>
+        <lightning:layoutItem size="8" padding="around-small">
+            <lightning:input value="{!v.searchKeyword}"
+                             placeholder="search..."
+                             aura:id="searchField"
+                             label="Search"/>
+        </lightning:layoutItem>
+        <lightning:layoutItem size="4" padding="around-small">
+            <lightning:button class="searchButton" onclick="{!c.searchProducts}"
+                              variant="brand"
+                              label="Search"
+                              iconName="utility:search"/> 
+        </lightning:layoutItem> 
+    </lightning:layout> 
+    <div style="box">
+        <lightning:layout multipleRows="true">
+            <aura:iteration items="{!v.products}" var="item">
+                <lightning:layoutItem  size="3" flexibility="grow" class="slds-m-around_small">
+                    <div class="productTile"> 
+                        <button class="productTileButton">
+                            <img class="ProductImg" src="{!item.Product2.ImageURL__c}"/>  
+                            <div class="productTileHeaders">
+                                <h2>{!item.Product2.Name}</h2>
+                                <h3>€{!item.UnitPrice}</h3>
+                            </div>
+                        </button>
+                        <button class="addToCartButton">
+                            <span class="leo-bt-cart-content">
+                                <i class="material-icons cart-icon">shopping_cart</i>
+                                <span class="btn-cart">{!$Label.c.Add_to_cart}</span>
+                            </span>
+                        </button>
+                    </div>
+                </lightning:layoutItem>
+            </aura:iteration>
+        </lightning:layout>
+    </div>
+</aura:component>

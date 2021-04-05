@@ -1,0 +1,49 @@
+.THIS .searchButton {
+    margin-top: 23px;
+}
+
+.THIS .productTileButton{
+    height: 350px;
+    width: 100%;
+        background: white;
+}
+.THIS .productTileButton:hover img{
+    transform: scale(0.9);
+    transition: all .2s ease-in-out; 
+}
+
+.THIS .addToCartButton{
+    margin-top: 5px;
+    margin-bottom: 15px;
+    width: 100%;
+    padding: 10px 35px;
+    border-radius: 0;
+    text-transform: uppercase;
+    border: none;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 28px;
+}
+.cSS_ProductsPage .addToCartButton:hover{
+    background-color: white;
+    border: 1px solid black;
+}
+
+.THIS .cart-icon{
+    margin-right: 10px;
+    font-weight: 400;
+    font-size: 20px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-bottom: 3px;
+}
+.THIS .ProductImg{
+        height: 290px;
+    	object-fit: scale-down;
+}
+.THIS .productTileHeaders h2{
+        font-size: 22px;
+}
+.THIS .productTileHeaders h3{
+        font-size: 18px;
+}
