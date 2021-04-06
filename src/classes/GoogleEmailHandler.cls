@@ -4,7 +4,6 @@ global class GoogleEmailHandler implements Auth.RegistrationHandler {
 
     global User createUser(Id portalId, Auth.UserData data) {
         Account a = [SELECT Id FROM account WHERE name = 'Customers'];
-        System.debug(a.Id + '1' + '2' + data.email + '3' + data.firstName + '4' + data.lastName);
         Contact c = new Contact();
         c.accountId = a.Id;
         c.email = data.email;
