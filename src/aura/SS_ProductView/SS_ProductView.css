@@ -1,0 +1,67 @@
+.THIS h1 {
+    font-size: 40px;
+    text-align: center;
+}
+.THIS h2{
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.THIS .column{
+    width: 50%;
+    display: inline-block;
+}
+.THIS .imageContainer{
+        justify-content: center;
+}
+
+.THIS .imageContainer img{
+padding: 50px;
+}
+
+.THIS .addToCartButton{
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 50%;
+    padding: 10px 35px;
+    border-radius: 0;
+    text-transform: uppercase;
+    border: none;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 28px;
+}
+
+.THIS .addToCartButton:hover{
+    background-color: white;
+    border: 1px solid black;
+}
+
+.THIS .cartButtonCont{
+    text-align: left;
+}
+
+.THIS .productDescription{
+    padding-top: 20px;
+}
+
+.THIS .quantCart{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    text-align: center;
+
+}
+.THIS .quantCart div{
+
+text-align: center;
+}
+
+.THIS .priceCont{
+    font-size: 40px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.THIS .quantCont{
+    float: left;
+}

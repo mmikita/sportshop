@@ -1,0 +1,38 @@
+<aura:component controller="SS_ProductViewController"
+                implements="forceCommunity:availableForAllPageTypes,force:hasRecordId" access="global">
+    <aura:attribute type="PricebookEntry" name="productItem"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <div>
+        <h1>{!v.productItem.Product2.Name}</h1>
+        <div class="productSection">
+            <div class="imageContainer column">
+                <img class="ProductImg" src="{!v.productItem.Product2.ImageURL__c}"/>
+            </div>
+            <div class="productDescription column">
+                    <h2>{!$Label.c.Description}</h2>
+                        {!v.productItem.Product2.Description}
+                <div class="priceCont">
+                    €{!v.productItem.UnitPrice}
+                </div>
+                <div class="quantCart">
+                    <div class="quantCont">
+                        <div>
+                            <label for="quantity">{!$Label.c.quantity}: </label>
+                        </div>
+                        <input type="number" name="quantity"
+                               label="Number"/>
+                    </div>
+                <div class="cartButtonCont">
+                    <button class="addToCartButton">
+                            <span class="leo-bt-cart-content">
+                                <i class="material-icons cart-icon">shopping_cart</i>
+                                <span class="btn-cart">{!$Label.c.Add_to_cart}</span>
+                            </span>
+                    </button>
+                </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</aura:component>
