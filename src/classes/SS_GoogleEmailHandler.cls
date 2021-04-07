@@ -1,9 +1,9 @@
-global class GoogleEmailHandler implements Auth.RegistrationHandler {
-    final string TIMEZONE = 'America/Los_Angeles';
-    final string locale = 'pl';
+global class SS_GoogleEmailHandler implements Auth.RegistrationHandler {
+    final string TIMEZONE = SS_Utils.getSettingValue('timezone');
+    final string locale = SS_Utils.getSettingValue('locale');
 
     global User createUser(Id portalId, Auth.UserData data) {
-        Account a = [SELECT Id FROM account WHERE name = 'Customers'];
+        Account a = [SELECT Id FROM account WHERE name = :SS_Utils.getSettingValue('sportshopCustomersAccount')];
         Contact c = new Contact();
         c.accountId = a.Id;
         c.email = data.email;
@@ -11,8 +11,8 @@ global class GoogleEmailHandler implements Auth.RegistrationHandler {
         c.lastName = data.lastName;
         insert(c);
         User u = new User();
-        Profile p = [SELECT Id FROM profile WHERE name = 'Customer Community User'];
-        u.username = data.firstName + '@customer.com';
+        Profile p = [SELECT Id FROM profile WHERE name = :SS_Utils.getSettingValue('sportshopCustomerProfile')];
+        u.username = data.lastName + SS_Utils.getSettingValue('sportshopUsernameEnd');
         u.email = data.email;
         u.lastName = data.lastName;
         u.firstName = data.firstName;
@@ -21,7 +21,7 @@ global class GoogleEmailHandler implements Auth.RegistrationHandler {
             alias = alias.substring(0, 8);
         }
         u.alias = alias;
-        u.emailEncodingKey = 'UTF-8';
+        u.emailEncodingKey = SS_Utils.getSettingValue('emailEncoding');
         u.languagelocalekey = locale;
         u.localesidkey = locale;
         u.timeZoneSidKey = TIMEZONE;
@@ -35,7 +35,7 @@ global class GoogleEmailHandler implements Auth.RegistrationHandler {
         u.email = data.email;
         u.lastName = data.lastName;
         u.firstName = data.firstName;
-        u.username = data.firstName + '@customer.comp';
+        u.username = data.firstName + SS_Utils.getSettingValue('sportshopUsernameEnd');
         update(u);
     }
 }
