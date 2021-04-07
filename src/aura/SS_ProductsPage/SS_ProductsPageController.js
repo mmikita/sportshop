@@ -1,12 +1,12 @@
 ({
-    doInit : function(component, event, helper) { 
+    getAllProducts : function(component, event, helper) { 
  		helper.getProducts(component, ''); 
     },
     searchProducts : function(component, event, helper) {
-        var searchKeyword = component.get("v.searchKeyword");
+        var searchKeyword = event.getParam('keyword'); 
         if(searchKeyword == undefined){
             searchKeyword = '';
         }
- 		helper.getProducts(component, searchKeyword); 
+ 		helper.getProducts(component, searchKeyword);
     }
 })

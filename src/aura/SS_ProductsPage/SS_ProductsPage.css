@@ -24,6 +24,7 @@
     font-size: 14px;
     line-height: 28px;
 }
+
 .cSS_ProductsPage .addToCartButton:hover{
     background-color: white;
     border: 1px solid black;
@@ -41,9 +42,31 @@
         height: 290px;
     	object-fit: scale-down;
 }
+
+.THIS .productTileHeaders{
+    text-align: center;
+    color: #000;
+}
+
 .THIS .productTileHeaders h2{
         font-size: 22px;
 }
 .THIS .productTileHeaders h3{
         font-size: 18px;
+}
+
+.cSS_ProductsPage.productsPageHeader{
+    text-align: center;
+}
+
+.cSS_ProductsPage.productsPageHeader h1{
+ font-size: 60px;   
+}
+
+.THIS .productTile{
+    text-align: center;
+}
+
+.THIS .tilesLayout{
+    justify-content: center;
 }

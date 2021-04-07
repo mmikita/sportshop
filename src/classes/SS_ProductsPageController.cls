@@ -6,7 +6,7 @@ public class SS_ProductsPageController {
                                                   where pricebook2.name = 'Standard' 
                                                   and pricebook2.IsActive = true
                                                   and product2.IsActive = true 
-                                                  and product2.Name like :searchKeyword +'%']; 
+                                                  and product2.Name like  :'%' + searchKeyword + '%']; 
         return productsForSell;
     } 
     

@@ -7,11 +7,9 @@
             if(state==='SUCCESS'){ 
                 var temp=response.getReturnValue();
                 component.set("v.products",temp);
-                console.log(temp);
             }
             else {
-                var errors = response.getError();                       
-                console.log("Failed with state: " + errors[0].message);
+                console.log("Failed with state: " + state);
             }
         });
         $A.enqueueAction(getProducts);  
