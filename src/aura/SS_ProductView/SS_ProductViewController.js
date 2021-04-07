@@ -6,15 +6,13 @@
         getProduct.setCallback(this,function(response) {
             var state= response.getState();
             if(state==='SUCCESS'){ 
-                var temp=response.getReturnValue();
-                component.set("v.productItem",temp);
-                console.log(temp);
-                var line = component.get("v.productItem");
-                console.log('liine' + line.Product2.Name);
+               var temp=response.getReturnValue();
+               component.set("v.productItem",temp);
+               var imagesURLs = component.get("v.productItem").Product2.productImages__c.split(";");
+               component.set("v.images", imagesURLs);
             }
             else {
-                var errors = response.getError();                       
-                console.log("Failed with state: " + errors[0].message);
+                console.log("Failed with state: " + state);
             }
         });
         $A.enqueueAction(getProduct);  
