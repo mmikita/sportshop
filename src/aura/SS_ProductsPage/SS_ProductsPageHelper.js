@@ -1,5 +1,5 @@
 ({
-	getProducts : function(component, keyword) {
+    getProducts : function(component, keyword) {
         var getProducts=component.get("c.getProducts");
         getProducts.setParams({"searchKeyword": keyword});
         getProducts.setCallback(this,function(response) {
@@ -9,9 +9,14 @@
                 component.set("v.products",temp);
             }
             else {
-                console.log("Failed with state: " + state);
+                let errors = response.getError();
+                let message = $A.get('$Label.c.SS_unknowError'); 
+                if (errors && Array.isArray(errors) && errors.length > 0) {
+                    message = errors[0].message;
+                }
+                component.find("errorsNotify").setErrorToast(message);
             }
         });
         $A.enqueueAction(getProducts);  
-	}
+    }
 })

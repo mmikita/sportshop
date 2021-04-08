@@ -2,6 +2,7 @@
    <aura:attribute type="PricebookEntry[]" name="products"/>
    <aura:handler name="init" value="{!this}" action="{!c.getAllProducts}"/>
    <aura:handler event="c:SS_SearchProductsEvent" action="{!c.searchProducts}"/>
+   <c:SS_ErrorsNotify aura:id="errorsNotify"/>
    <div class="productsPageHeader">
        <h1>{!$Label.c.SS_Products}</h1>
        <button class="slds-button" onclick="{!c.getAllProducts}">{!$Label.c.SS_showAll}</button>
