@@ -3,7 +3,7 @@ global class SS_GoogleEmailHandler implements Auth.RegistrationHandler {
     final string locale = SS_Utils.getSettingValue('locale');
 
     global User createUser(Id portalId, Auth.UserData data) {
-        Account a = [SELECT Id FROM account WHERE name = :SS_Utils.getSettingValue('sportshopCustomersAccount')];
+        Account a = [SELECT Id FROM account WHERE Id = :SS_Utils.getSettingValue('acccountCustomersId')];
         Contact c = new Contact();
         c.accountId = a.Id;
         c.email = data.email;
@@ -11,7 +11,7 @@ global class SS_GoogleEmailHandler implements Auth.RegistrationHandler {
         c.lastName = data.lastName;
         insert(c);
         User u = new User();
-        Profile p = [SELECT Id FROM profile WHERE name = :SS_Utils.getSettingValue('sportshopCustomerProfile')];
+        Profile p = [SELECT Id FROM profile WHERE Id = :SS_Utils.getSettingValue('sportshopCustomerProfileId')];
         u.username = data.lastName + SS_Utils.getSettingValue('sportshopUsernameEnd');
         u.email = data.email;
         u.lastName = data.lastName;
