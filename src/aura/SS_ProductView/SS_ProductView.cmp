@@ -3,6 +3,7 @@
     <aura:attribute type="PricebookEntry" name="productItem"/>
     <aura:attribute type="String[]" name="images"/>
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <c:SS_ErrorsNotify aura:id="errorsNotify"/>
     <div>
         <h1>{!v.productItem.Product2.Name}</h1>
         <div class="productSection">
