@@ -1,11 +1,12 @@
 <aura:component controller="SS_ProductsPageController" implements="forceCommunity:availableForAllPageTypes" access="global">
-   <aura:attribute type="PricebookEntry[]" name="products"/>
-   <aura:handler name="init" value="{!this}" action="{!c.getAllProducts}"/>
-   <aura:handler event="c:SS_SearchProductsEvent" action="{!c.searchProducts}"/>
-   <c:SS_ErrorsNotify aura:id="errorsNotify"/>
-   <div class="productsPageHeader">
-       <h1>{!$Label.c.SS_Products}</h1>
-       <button class="slds-button" onclick="{!c.getAllProducts}">{!$Label.c.SS_showAll}</button>
+    <aura:attribute type="PricebookEntry[]" name="products"/>
+    <aura:handler name="init" value="{!this}" action="{!c.getAllProducts}"/>
+    <aura:handler event="c:SS_SearchProductsEvent" action="{!c.searchProducts}"/>
+    <c:SS_ErrorsNotify aura:id="errorsNotify"/>
+    <c:SS_SuccessNotify aura:id="successNotify"/>
+    <div class="productsPageHeader">
+        <h1>{!$Label.c.SS_Products}</h1>
+        <button class="slds-button" onclick="{!c.getAllProducts}">{!$Label.c.SS_showAll}</button>
     </div>
     <div style="box productTiles">
         <lightning:layout multipleRows="true" class="tilesLayout">
@@ -19,12 +20,14 @@
                                 <h3>€{!item.UnitPrice}</h3>
                             </div>
                         </a>
-                        <button class="addToCartButton">
-                            <span class="leo-bt-cart-content">
-                                <i class="material-icons cart-icon">shopping_cart</i>
-                                <span class="btn-cart">{!$Label.c.SS_AddToCart}</span>
-                            </span>
-                        </button>
+                        <div data-prod="{!item.Product2.Id}" onclick="{!c.addProductToCart}" >
+                            <button class="addToCartButton">
+                                <span class="leo-bt-cart-content">
+                                    <i class="material-icons cart-icon">shopping_cart</i>
+                                    <span class="btn-cart">{!$Label.c.SS_AddToCart}</span>
+                                </span>
+                            </button>
+                        </div>
                     </div>
                 </lightning:layoutItem>
             </aura:iteration>

@@ -4,6 +4,7 @@
     <aura:attribute type="String[]" name="images"/>
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <c:SS_ErrorsNotify aura:id="errorsNotify"/>
+    <c:SS_SuccessNotify aura:id="successNotify"/> 
     <div>
         <h1>{!v.productItem.Product2.Name}</h1>
         <div class="productSection">
@@ -18,14 +19,18 @@
                 </div>
                 <div class="quantCart">
                     <div class="quantCont">
-                        <div>
-                            <label for="quantity">{!$Label.c.quantity}: </label>
+                        <div class="stepper">
+                            <div>
+                                <lightning:input aura:id="quantity"  type="number" id="stepper" value="1" min="1" step="1"/>
+                            </div>
+                            <div class="buttCont">
+                                <button onclick="{!c.decrementQuant}">–</button>
+                                <button onclick="{!c.incrementQuant}">+</button>
+                            </div>
                         </div>
-                        <input class="slds-input" type="number" name="quantity"
-                               label="Number"  min="1"  step="1"/>
                     </div>
                     <div class="cartButtonCont">
-                        <button class="addToCartButton">
+                        <button class="addToCartButton" onclick="{!c.addProductToCart}">
                             <span class="leo-bt-cart-content">
                                 <i class="material-icons cart-icon">shopping_cart</i>
                                 <span class="btn-cart">{!$Label.c.Add_to_cart}</span>

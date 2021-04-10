@@ -1,0 +1,53 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global" controller="SS_CartPageController">
+    <aura:handler name="init" value="{!this}" action="{!c.getCart}"/>
+    <aura:attribute type="OpportunityLineItem[]" name="products"/>
+    <aura:attribute type="Opportunity" name="cart"/>
+    <c:SS_ErrorsNotify aura:id="errorsNotify"/>
+    <div>
+        <h1>{!$Label.c.SS_OrderCart}</h1>
+        <table style="width:100%" class="slds-table slds-table_cell-buffer slds-table_bordered">
+            <tr class="slds-line-height_reset">
+                <th>{!$Label.c.SS_Name}</th>
+                <th>{!$Label.c.SS_Quantity}</th>
+                <th>{!$Label.c.SS_UnitPrice}</th>
+                <th>{!$Label.c.SS_TotalPrice}</th>
+                <th>{!$Label.c.SS_Delete}</th>
+            </tr>
+            <aura:iteration items="{!v.products}" var="item">
+                <tr class="slds-line-height_reset">
+                    <td>{!item.ProductName__c}</td>
+                    <td>{!item.Quantity}
+                        <span class="input-group-btn-vertical">
+                            <span onclick="{!c.changeLineItemQuantity}" data-lineitem="{!item.Id}" data-unitprice="{!item.UnitPrice}" data-linequant="{!item.Quantity+1}">
+                                <button class="changeQuantBut" type="button">
+                                    <span class="incrButton">+</span>
+                                </button>
+                            </span>            
+                            <span onclick="{!c.changeLineItemQuantity}" data-lineitem="{!item.Id}" data-unitprice="{!item.UnitPrice}" data-linequant="{!item.Quantity-1}">
+                                <button class="changeQuantBut" type="button">
+                                    <span class="descrButton">-</span>
+                                </button>
+                            </span>
+                        </span>
+                    </td>
+                    <td>€{!item.UnitPrice}</td>
+                    <td>€{!item.Subtotal}</td>
+                    <td>
+                        <div class="deleteFromListButton" onclick="{!c.handleDeleteItem}" data-lineitem="{!item.Id}">
+                            <button class="slds-button slds-button_destructive">
+                                {!$Label.c.SS_Delete}
+                            </button>
+                        </div>            
+                    </td>
+                </tr>
+            </aura:iteration>
+        </table>
+    </div>
+    <div class="totalAmount">
+        {!$Label.c.SS_Total}:  €{!v.cart.Amount}
+    </div>
+    <div class="cartActionButtons">
+        <button class="slds-button slds-button_text-destructive" onclick="{!c.handleClearCart}">{!$Label.c.SS_ClearCart}</button>
+        <button class="slds-button slds-button_neutral" onclick="{!c.goToOrder}">{!$Label.c.SS_Order}</button>
+    </div> 
+</aura:component>

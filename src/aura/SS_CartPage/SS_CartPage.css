@@ -1,0 +1,51 @@
+.THIS h1 {
+    font-size: 20px;
+    padding-bottom: 10px;
+}
+.THIS .slds-table th{
+    text-align: center ;
+}
+
+.THIS .slds-table td{
+    text-align: center;
+}
+
+.cSS_CartPage.totalAmount{
+    text-align: right;
+    font-size: 20px;
+}
+
+.THIS .quantChange{
+    background: gray;
+    font-size: 20px;
+    margin: 10px;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.THIS .input-group-btn-vertical{
+    border-collapse: separate;
+    color: #414141;
+    width: auto;
+    position: relative;
+    white-space: nowrap;
+    width: 1%;
+    vertical-align: middle;
+    display: table-cel;
+    margin: 5px;
+}
+
+.THIS .changeQuantBut{
+    margin: 2px;
+}
+
+.THIS .incrButton{
+    font-size: 13px;
+}
+
+.THIS .descrButton{
+    font-size: 13px;
+}
+.cSS_CartPage.cartActionButtons{
+    text-align: center;
+}

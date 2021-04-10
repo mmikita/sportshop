@@ -84,6 +84,7 @@ padding: 50px;
   width: 200px;
   height: auto;
 }
+
 .THIS .gallery a {
 	display: inline-block;
 }
@@ -94,7 +95,45 @@ padding: 50px;
   float: left;
   width: max-content;
 }
+
 .THIS .reviewSection h3{
     font-size: 30px;
     padding-bottom: 10px;
+}
+
+.THIS [type="number"]::-webkit-inner-spin-button,
+.THIS [type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  height: auto;
+}
+
+.THIS .slds-form-element__help{
+    position: absolute;
+    top: -20px;
+}
+
+.THIS .buttCont{
+    width: 120%;
+}
+
+.THIS .stepper lightning:input {
+  width: 3em;
+  height: 100%;
+  text-align: center;
+  border: 0;
+  background: transparent;
+  color: #000;
+}
+
+.THIS .stepper button {
+  width: 1.4em;
+  font-weight: 300;
+  height: 100%;
+  line-height: 0.1em;
+  font-size: 1.4em;
+  padding: 0.2em !important;
+  background: #eee;
+  color: #333;
+  height: 42px;  
+  border: 1px solid gray;
 }
