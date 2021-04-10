@@ -1,0 +1,56 @@
+<aura:component controller="SS_ProductViewController"
+                implements="forceCommunity:availableForAllPageTypes,force:hasRecordId" access="global">
+    <aura:attribute type="PricebookEntry" name="productItem"/>
+    <aura:attribute type="String[]" name="images"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <c:SS_ErrorsNotify aura:id="errorsNotify"/>
+    <div>
+        <h1>{!v.productItem.Product2.Name}</h1>
+        <div class="productSection">
+            <div class="imageContainer column">
+                <img class="ProductImg" src="{!v.productItem.Product2.ImageURL__c}"/>
+            </div>
+            <div class="productDescription column">
+                <h2>{!$Label.c.Description}</h2>
+                {!v.productItem.Product2.Description}
+                <div class="priceCont">
+                    €{!v.productItem.UnitPrice}
+                </div>
+                <div class="quantCart">
+                    <div class="quantCont">
+                        <div>
+                            <label for="quantity">{!$Label.c.quantity}: </label>
+                        </div>
+                        <input class="slds-input" type="number" name="quantity"
+                               label="Number"  min="1"  step="1"/>
+                    </div>
+                    <div class="cartButtonCont">
+                        <button class="addToCartButton">
+                            <span class="leo-bt-cart-content">
+                                <i class="material-icons cart-icon">shopping_cart</i>
+                                <span class="btn-cart">{!$Label.c.Add_to_cart}</span>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="gallery">
+                        <aura:iteration items="{!v.images}" var="imageURL">
+                            <a target="_blank" href="{!imageURL}">
+                                <img src="{!imageURL}" alt="Mountains" width="600" height="400"/>
+                            </a>
+                        </aura:iteration>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="reviewSection">
+            <div>
+                <h3>{!$Label.c.SS_Add_product_review}</h3>    
+                <lightning:input aura:id="title" name="Title" label="Title" value="{!v.movieReview.Name}" required="true"/>
+                <lightning:inputRichText aura:id="description" title="description" disabledCategories="FORMAT_FONT" value="{!v.movieReview.Comment__c}"/>
+            </div>
+            <div>
+                <h3>{!$Label.c.SS_Product_reviews}</h3>
+            </div>
+        </div>
+    </div> 
+</aura:component>

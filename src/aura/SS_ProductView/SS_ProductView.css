@@ -1,0 +1,100 @@
+.THIS h1 {
+    font-size: 40px;
+    text-align: center;
+}
+.THIS h2{
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.THIS .column{
+    width: 50%;
+    display: inline-block;
+}
+.THIS .imageContainer{
+        justify-content: center;
+}
+
+.THIS .imageContainer img{
+padding: 50px;
+}
+
+.THIS .addToCartButton{
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 50%;
+    padding: 10px 35px;
+    border-radius: 0;
+    text-transform: uppercase;
+    border: none;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 28px;
+}
+
+.THIS .addToCartButton:hover{
+    background-color: white;
+    border: 1px solid black;
+}
+
+.THIS .cartButtonCont{
+    text-align: left;
+}
+
+.THIS .productDescription{
+    padding-top: 20px;
+}
+
+.THIS .quantCart{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    text-align: center;
+
+}
+.THIS .quantCart div{
+	margin-right: 20px;
+}
+
+.THIS .priceCont{
+    font-size: 40px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.THIS .quantCont{
+    float: left;
+}
+
+.THIS .quantCont input{
+  width: 65px;
+  height: 42px;
+  line-height: 1.65;
+  float: left;
+  display: block;
+  padding: 0;
+  margin: 0;
+  padding-left: 20px;
+  border: 1px solid #eee;
+}
+
+.THIS .gallery:hover {
+  border: 1px solid #777;
+}
+
+.THIS .gallery img {
+  width: 200px;
+  height: auto;
+}
+.THIS .gallery a {
+	display: inline-block;
+}
+
+.THIS .gallery {
+  margin: 5px;
+  border: 1px solid #ccc;
+  float: left;
+  width: max-content;
+}
+.THIS .reviewSection h3{
+    font-size: 30px;
+    padding-bottom: 10px;
+}
