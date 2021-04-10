@@ -1,0 +1,33 @@
+<aura:component controller="SS_ProductsPageController" implements="forceCommunity:availableForAllPageTypes" access="global">
+   <aura:attribute type="PricebookEntry[]" name="products"/>
+   <aura:handler name="init" value="{!this}" action="{!c.getAllProducts}"/>
+   <aura:handler event="c:SS_SearchProductsEvent" action="{!c.searchProducts}"/>
+   <c:SS_ErrorsNotify aura:id="errorsNotify"/>
+   <div class="productsPageHeader">
+       <h1>{!$Label.c.SS_Products}</h1>
+       <button class="slds-button" onclick="{!c.getAllProducts}">{!$Label.c.SS_showAll}</button>
+    </div>
+    <div style="box productTiles">
+        <lightning:layout multipleRows="true" class="tilesLayout">
+            <aura:iteration items="{!v.products}" var="item">
+                <lightning:layoutItem  size="3" flexibility="grow" class="slds-m-around_small">
+                    <div class="productTile"> 
+                        <a href="{!'/sportshop/s/detail/' + item.Product2.Id}" class="productTileButton" onclick="navigateToProduct">
+                            <img class="ProductImg" src="{!item.Product2.ImageURL__c}"/>  
+                            <div class="productTileHeaders">
+                                <h2>{!item.Product2.Name}</h2>
+                                <h3>€{!item.UnitPrice}</h3>
+                            </div>
+                        </a>
+                        <button class="addToCartButton">
+                            <span class="leo-bt-cart-content">
+                                <i class="material-icons cart-icon">shopping_cart</i>
+                                <span class="btn-cart">{!$Label.c.SS_AddToCart}</span>
+                            </span>
+                        </button>
+                    </div>
+                </lightning:layoutItem>
+            </aura:iteration>
+        </lightning:layout>
+    </div>
+</aura:component>

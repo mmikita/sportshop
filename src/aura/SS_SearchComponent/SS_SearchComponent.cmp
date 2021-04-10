@@ -1,0 +1,12 @@
+<aura:component implements="forceCommunity:searchInterface">
+    <aura:attribute name="searchText" type="String" default=""/>
+    <aura:registerEvent name="searchProducts" type="c:SS_SearchProductsEvent"/>
+    <div class="slds-form-element slds-lookup" data-select="single">
+      <div class="slds-form-element__control">
+        <div class="slds-input-has-icon slds-input-has-icon--right">
+          <lightning:buttonIcon iconName="utility:search" variant="bare" onclick="{! c.searchProducts }" alternativeText="Search" class="slds-input__icon" />
+          <ui:inputText keyup="{!c.onKeyUp}" value="{!v.searchText}" class="slds-lookup__search-input slds-input" placeholder="{!$Label.c.SS_searchProducts}" /> 
+        </div>
+      </div>
+    </div>
+</aura:component>

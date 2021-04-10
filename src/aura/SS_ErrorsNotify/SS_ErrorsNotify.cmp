@@ -1,0 +1,6 @@
+<aura:component>
+    <lightning:notificationsLibrary aura:id="errorToast"/>
+    <aura:method name="setErrorToast" action="{!c.setMessage}">
+        <aura:attribute name="message" type="String"/>
+    </aura:method>
+</aura:component>
