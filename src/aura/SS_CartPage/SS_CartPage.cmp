@@ -48,6 +48,8 @@
     </div>
     <div class="cartActionButtons">
         <button class="slds-button slds-button_text-destructive" onclick="{!c.handleClearCart}">{!$Label.c.SS_ClearCart}</button>
-        <button class="slds-button slds-button_neutral" onclick="{!c.goToOrder}">{!$Label.c.SS_Order}</button>
+        <aura:if isTrue="{!not(empty(v.products))}"> 
+            <button class="slds-button slds-button_neutral" onclick="{!c.goToOrder}">{!$Label.c.SS_Order}</button>
+        </aura:if>
     </div> 
 </aura:component>
