@@ -29,12 +29,6 @@
                 component.find("errorsNotify").setErrorToast(message);
             }
         });
-        $A.enqueueAction(getProducts);  
-        
-        
-        
+        $A.enqueueAction(getProducts);
     }
-    
-    
-    
 })

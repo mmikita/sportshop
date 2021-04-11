@@ -3,9 +3,7 @@ public class SS_CartPageController {
     @AuraEnabled
     public static Opportunity getItemsInCart(string userId) { 
         User user = SS_UserHandler.getUserById(userId);
-        Opportunity opportunity = [select Id, Amount, (Select Id, PricebookEntry.Product2Id, ProductName__c, Product2Id, Quantity, UnitPrice, TotalPrice, Subtotal, Name  
-                                                       FROM OpportunityLineItems) from Opportunity 
-                                   where isCart__c = true and Contact__c =  :user.ContactId];
+        Opportunity opportunity = SS_CartHandler.getItemsInCart(user.ContactId);
         return opportunity;
     }
     

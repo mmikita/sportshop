@@ -26,7 +26,6 @@
         var unitPrice = ctarget.dataset.unitprice;
         var opLineQuant = ctarget.dataset.linequant;
         var getCartItems=component.get("c.setQuantity");
-        console.log(opLineQuant +'teet' + "lineId"+ opLineId+"quantity"+ opLineQuant+"unitPrice"+ unitPrice);
         getCartItems.setParams({"lineId": opLineId,"quantity": opLineQuant,"unitPrice": unitPrice});
         getCartItems.setCallback(this,function(response) {
             var state= response.getState();

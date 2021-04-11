@@ -1,8 +1,14 @@
 public class SS_CartHandler {
     public static void deleteLineItem(String lineItemId){
         delete new OpportunityLineItem(Id = lineItemId);
-        
     }  
+    
+    public static Opportunity getItemsInCart(String userId){
+    Opportunity cartWithItems = [select Id, Amount, ContractId, (Select Id, PricebookEntry.Id, PricebookEntry.Product2Id, ProductName__c, Product2Id, Quantity, UnitPrice, TotalPrice, Subtotal, Name
+                                                       FROM OpportunityLineItems) from Opportunity 
+                                   where isCart__c = true and Contact__c =  :userId];
+        return cartWithItems;
+    }
     
     public static void clearCart(String oppId){
         List<OpportunityLineItem> lineItems = [Select id from OpportunityLineItem where OpportunityId = :oppId];
@@ -14,7 +20,7 @@ public class SS_CartHandler {
     }
     
     public static decimal getStandardPriceForProduct(string productId){
-               PricebookEntry product = [select id, product2.ImageURL__c, product2.productImages__c, product2.Description, product2.Name,Unitprice
+               PricebookEntry product = [select Unitprice
                                     			  from Pricebookentry 
                                                   where pricebook2.name = 'Standard' 
                                                   and pricebook2.IsActive = true
@@ -52,13 +58,13 @@ public class SS_CartHandler {
     }
     
     public static Opportunity createNewCart(string contactId){
-        Contract contract = new Contract();
-        contract.AccountId = SS_Utils.getSettingValue('acccountCustomersId');
-        insert contract;
+        Contract contForCart = new Contract();
+        contForCart.AccountId = SS_Utils.getSettingValue('acccountCustomersId');
+        insert contForCart;
         Opportunity cart = new Opportunity();    
         cart.Contact__c = contactId;
         cart.isCart__c = true;
-        cart.ContractId = contract.Id;
+        cart.ContractId = contForCart.Id;
         cart.CloseDate = Date.Today() + 365;
         cart.Name = SS_Utils.getSettingValue('cartOppName');
         cart.StageName = 'Prospecting';
