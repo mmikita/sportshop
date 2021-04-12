@@ -1,0 +1,92 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" controller="SS_MyOrdersController">
+    <aura:attribute type="Order[]" name="orders"/>
+    <aura:handler name="init" value="{!this}" action="{!c.getOrders}"/>
+    <c:SS_ErrorsNotify aura:id="errorsNotify"/>
+    <div>
+        <div>
+            <h1 class="orderSummary">{!$Label.c.SS_MyOrders}</h1>
+            <aura:iteration items="{!v.orders}" var="order">
+                <div class="orderContrainer">
+                    <div class="orderNumberCont">{!$Label.c.SS_OrderNumber}: {!order.OrderNumber}</div>
+                    <lightning:tabset>
+                        <lightning:tab label="{!$Label.c.SS_OrderDetails}" >
+                            <table style="width:100%" class="slds-table slds-table_cell-buffer slds-table_bordered">
+                                <tr class="slds-line-height_reset">
+                                    <th>{!$Label.c.SS_OrderNumber}</th>
+                                    <th>{!$Label.c.SS_ShippingAddress}</th>
+                                    <th>{!$Label.c.SS_Paymentmethod}</th>
+                                    <th>{!$Label.c.SS_ShippingMethod}</th>
+                                    <th>{!$Label.c.SS_TotalPrice}</th>
+                                </tr>
+                                <tr class="slds-line-height_reset">
+                                    <td>
+                                        {!order.OrderNumber}
+                                    </td>
+                                    <td>{!order.ShippingStreet}<br/>
+                                        {!order.ShippingPostalCode}&nbsp;{!order.ShippingCity}<br/>
+                                        {!order.ShippingCountry}
+                                    </td>
+                                    <td>{!order.Payment_method__c}</td>
+                                    <td>{!order.Ship_method__c}</td>
+                                    <td>€{!order.final_amount__c}</td>
+                                </tr>
+                            </table>       
+                        </lightning:tab>
+                        <lightning:tab label="{!$Label.c.SS_Products}">
+                            <table style="width:100%" class="slds-table slds-table_cell-buffer slds-table_bordered">
+                                <tr class="slds-line-height_reset">
+                                    <th>{!$Label.c.SS_Name}</th>
+                                    <th>{!$Label.c.SS_Quantity}</th>
+                                    <th>{!$Label.c.SS_UnitPrice}</th>
+                                    <th>{!$Label.c.SS_TotalPrice}</th>
+                                </tr>
+                                <aura:iteration items="{!order.OrderItems}" var="item">
+                                    <tr class="slds-line-height_reset">
+                                        <td>
+                                            <a href="{!'/sportshop/s/detail/' + item.Product2Id}">
+                                                {!item.PricebookEntry.Product2.Name}
+                                            </a>
+                                        </td>
+                                        <td>{!item.Quantity}</td>
+                                        <td>€{!item.UnitPrice}</td>
+                                        <td>€{!item.TotalPrice}</td>
+                                    </tr>
+                                </aura:iteration>
+                            </table>
+                        </lightning:tab>
+                        <lightning:tab label="{!$Label.c.SS_Complaints}">
+                            <div class="complaintButton">
+                                <table style="width:100%" class="slds-table slds-table_cell-buffer slds-table_bordered">
+                                    <tr class="slds-line-height_reset">
+                                        <th>{!$Label.c.SS_Name}</th>
+                                        <th>{!$Label.c.SS_Quantity}</th>
+                                        <th>{!$Label.c.SS_UnitPrice}</th>
+                                        <th>{!$Label.c.SS_TotalPrice}</th>
+                                    </tr>
+                                    <aura:iteration items="{!order.OrderItems}" var="item">
+                                        <tr class="slds-line-height_reset">
+                                            <td>
+                                                <a href="{!'/sportshop/s/detail/' + item.Product2Id}">
+                                                    {!item.PricebookEntry.Product2.Name}
+                                                </a>
+                                            </td>
+                                            <td>{!item.Quantity}</td>
+                                            <td>€{!item.UnitPrice}</td>
+                                            <td>€{!item.TotalPrice}</td>
+                                        </tr>
+                                    </aura:iteration>
+                                </table>
+                                <div class="addComplaintCont">
+                                    <h2>{!$Label.c.SS_MakeComplaint}</h2>
+                                    <lightning:input aura:id="title" name="Title" label="Title" value="{!v.movieReview.Name}" required="true"/>
+                                    <lightning:inputRichText aura:id="description" title="description" disabledCategories="FORMAT_FONT" value="{!v.movieReview.Comment__c}"/>
+                                    <lightning:button label="{!$Label.c.SS_MakeComplaint}" iconName="utility:save" variant="brand" onclick="{!c.onSave}"/>
+                                </div>  
+                            </div>
+                        </lightning:tab>
+                    </lightning:tabset>
+                </div>
+            </aura:iteration>
+        </div>
+    </div>
+</aura:component>
