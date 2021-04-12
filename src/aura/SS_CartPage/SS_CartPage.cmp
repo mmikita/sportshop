@@ -1,4 +1,4 @@
-<aura:component implements="forceCommunity:availableForAllPageTypes" access="global" controller="SS_CartPageController">
+<aura:component implements="forceCommunity:availableForAllPageTypes" controller="SS_CartPageController">
     <aura:handler name="init" value="{!this}" action="{!c.getCart}"/>
     <aura:attribute type="OpportunityLineItem[]" name="products"/>
     <aura:attribute type="Opportunity" name="cart"/>
@@ -15,7 +15,10 @@
             </tr>
             <aura:iteration items="{!v.products}" var="item">
                 <tr class="slds-line-height_reset">
-                    <td>{!item.ProductName__c}</td>
+                    <td> 
+                        <a href="{!'/sportshop/s/detail/' + item.Product2Id}">
+                            {!item.ProductName__c}
+                        </a></td>
                     <td>{!item.Quantity}
                         <span class="input-group-btn-vertical">
                             <span onclick="{!c.changeLineItemQuantity}" data-lineitem="{!item.Id}" data-unitprice="{!item.UnitPrice}" data-linequant="{!item.Quantity+1}">

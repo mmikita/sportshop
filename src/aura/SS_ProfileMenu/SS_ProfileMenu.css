@@ -1,0 +1,16 @@
+.THIS .menuContainer {
+float: left;
+margin-right: 15px;
+}
+.cSS_ProfileMenu{
+    width: 200px !important;
+}
+.THIS .cart-block{
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.THIS .cart-block:hover{
+    transform: scale(1.2);
+    transition: all .2s ease-in-out; 
+}

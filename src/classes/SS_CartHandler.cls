@@ -3,10 +3,10 @@ public class SS_CartHandler {
         delete new OpportunityLineItem(Id = lineItemId);
     }  
     
-    public static Opportunity getItemsInCart(String userId){
+    public static Opportunity getItemsInCart(String contactId){
     Opportunity cartWithItems = [select Id, Amount, ContractId, (Select Id, PricebookEntry.Id, PricebookEntry.Product2Id, ProductName__c, Product2Id, Quantity, UnitPrice, TotalPrice, Subtotal, Name
                                                        FROM OpportunityLineItems) from Opportunity 
-                                   where isCart__c = true and Contact__c =  :userId];
+                                   where isCart__c = true and Contact__c =  :contactId];
         return cartWithItems;
     }
     
@@ -32,7 +32,6 @@ public class SS_CartHandler {
     public static void addItemToCart(String productId, decimal quantity, string contactId){
         Opportunity cart;
         List<Opportunity> oppsList = [Select id from Opportunity where isCart__c = true and Contact__c = :contactId];
-        System.debug('1' + oppsList);
         if(!oppsList.isEmpty() && oppsList.size()==1){
             cart = oppsList[0];
         }else if(oppsList.isEmpty()){
@@ -71,12 +70,5 @@ public class SS_CartHandler {
         cart.Pricebook2Id = SS_Utils.getSettingValue('standardPriceBookId');
         insert cart;
         return cart;
-    }
-    
-    public static void createNewCartItem(String ProductId, integer quantity, string oppId){
-        OpportunityLineItem cartItem = new OpportunityLineItem();
-        cartItem.Quantity = quantity;
-        cartItem.Product2Id = ProductId;
-        cartItem.OpportunityId = oppId;
-    }    
+    }   
 }

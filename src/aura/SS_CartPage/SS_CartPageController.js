@@ -5,7 +5,6 @@
     handleDeleteItem : function(component, event, helper) {
         var msg = $A.get('$Label.c.SS_ConfirmDelete');
         if (!confirm(msg)) {
-            console.log('No');
             return false;
         } else {
             helper.deleteLineItem(component, event, helper);
@@ -14,7 +13,6 @@
     handleClearCart : function(component, event, helper) {
         var msg =$A.get('$Label.c.SS_ConfirmDelete');
         if (!confirm(msg)) {
-            console.log('No');
             return false;
         } else {
             helper.clearCartItems(component, event, helper);
@@ -38,7 +36,8 @@
             }
         });
         $A.enqueueAction(getCartItems);    
-    },goToOrder : function(component, event, helper) {
+    },
+    goToOrder : function(component, event, helper) {
         var urlEvent = $A.get("e.force:navigateToURL");
         urlEvent.setParams({
             "url": "/order"

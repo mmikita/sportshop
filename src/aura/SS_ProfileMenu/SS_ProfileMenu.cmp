@@ -1,0 +1,28 @@
+<aura:component implements="forceCommunity:profileMenuInterface" access="global">
+    <ltng:require styles="{!$Resource.fontAwesome}" />
+    <aura:attribute name="options" type="String[]" default="My Profile,My Orders,LogOut"/>
+    <div class="topRight">
+        <div class="menuContainer">
+            <ui:menu >
+                <ui:menuTriggerLink aura:id="trigger" label="Profile Menu ↓"/>
+                <ui:menuList class="actionMenu" aura:id="actionMenu">
+                    <aura:iteration items="{!v.options}" var="itemLabel">
+                        <ui:actionMenuItem label="{!itemLabel}" click="{!c.handleClick}"/>
+                    </aura:iteration>
+                </ui:menuList>
+            </ui:menu>
+        </div>
+        <div class="cart-block" onclick="{!c.cartPage}">
+            <div class="blockcart cart-preview inactive leo-blockcart show-leo-loading">
+                <div class="header">
+                    <i class="material-icons shopping-cart">shopping_cart</i>
+                </div>
+                <div class="cssload-piano" style="display: none;">
+                    <div class="cssload-rect1"></div>
+                    <div class="cssload-rect2"></div>
+                    <div class="cssload-rect3"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</aura:component>
