@@ -1,0 +1,20 @@
+.cSS_Productreviews.reviewSection {
+    padding: 10px;
+}
+
+.THIS .noReviews{
+    font-size: 16px;
+    margin-botttom: 10px;
+}
+
+.THIS .subButton{
+    margin-top: 5px;
+}
+
+.THIS .slds-media__body{
+    padding-top: 8px;
+}
+
+.THIS .slds-post{
+    background-color: #f5f7fa;
+}
