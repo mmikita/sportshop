@@ -8,6 +8,9 @@
             <aura:iteration items="{!v.orders}" var="order">
                 <div class="orderContrainer">
                     <div class="orderNumberCont">{!$Label.c.SS_OrderNumber}: {!order.OrderNumber}</div>
+                    <p>
+                        <lightning:formattedDateTime value="{!order.CreatedDate}" year="2-digit" month="short" day="2-digit" weekday="long" timeZone="UTC"/>
+                    </p>
                     <lightning:tabset>
                         <lightning:tab label="{!$Label.c.SS_OrderDetails}" >
                             <table style="width:100%" class="slds-table slds-table_cell-buffer slds-table_bordered">
