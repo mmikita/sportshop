@@ -47,15 +47,6 @@
                 </div>
             </div>
         </div>
-        <div class="reviewSection">
-            <div>
-                <h3>{!$Label.c.SS_Add_product_review}</h3>    
-                <lightning:input aura:id="title" name="Title" label="Title" value="{!v.movieReview.Name}" required="true"/>
-                <lightning:inputRichText aura:id="description" title="description" disabledCategories="FORMAT_FONT" value="{!v.movieReview.Comment__c}"/>
-            </div>
-            <div>
-                <h3>{!$Label.c.SS_Product_reviews}</h3>
-            </div>
-        </div>
+        <c:SS_Productreviews productId="{!v.recordId}"/>
     </div> 
 </aura:component>
