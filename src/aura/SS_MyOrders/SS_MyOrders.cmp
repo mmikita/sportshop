@@ -58,27 +58,7 @@
                             </table>
                         </lightning:tab>
                         <lightning:tab label="{!$Label.c.SS_Complaints}">
-                            <div class="complaintButton">
-                                <table style="width:100%" class="slds-table slds-table_cell-buffer slds-table_bordered">
-                                    <tr class="slds-line-height_reset">
-                                        <th>{!$Label.c.SS_Titlte}</th>
-                                        <th>{!$Label.c.SS_ProblemDescription}</th>
-                                        <th>{!$Label.c.SS_Status}</th>
-                                        <th>{!$Label.c.SS_Closed}</th>
-                                    </tr>
-                                    <aura:iteration items="{!order.Complaints__r}" var="comp">
-                                        <tr class="slds-line-height_reset">
-                                            <td>
-                                                {!comp.Title__c}
-                                            </td>
-                                            <td>{!comp.D__c}</td>
-                                            <td>{!comp.Status__c}</td>
-                                            <td>{!comp.closed__c}</td>
-                                        </tr>
-                                    </aura:iteration>
-                                </table>
-                                <c:SS_AddComplaintForm orderId="{!order.Id}" />
-                            </div>
+                            <c:SS_ComplaintsSection orderId="{!order.Id}" complaints="{!order.Complaints__r}"/>
                         </lightning:tab>
                     </lightning:tabset>
                 </div>
