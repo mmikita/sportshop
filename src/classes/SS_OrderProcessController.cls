@@ -13,9 +13,11 @@ public class SS_OrderProcessController {
         wraperToReturn.put('paymentsMethods', paymentsMethods);
         return wraperToReturn;
     }
-    @AuraEnabled
-    public static void takeOrder(Opportunity opportunity, User user, String shipMethod, String payMethod) { 
-        SS_OrderHandler.createOrder(opportunity, user, shipMethod, payMethod);
-    }
     
+    @AuraEnabled
+    public static void takeOrder(User user, String shipMethod, String payMethod){ 
+        User userFromId = SS_UserHandler.getUserById(user.Id);
+        Opportunity cart = SS_CartHandler.getItemsInCart(userFromId.ContactId);
+        SS_OrderHandler.createOrder(cart, user, shipMethod, payMethod);
+    }
 }

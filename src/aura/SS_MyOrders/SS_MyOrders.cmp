@@ -16,7 +16,7 @@
                                     <th>{!$Label.c.SS_ShippingAddress}</th>
                                     <th>{!$Label.c.SS_Paymentmethod}</th>
                                     <th>{!$Label.c.SS_ShippingMethod}</th>
-                                    <th>{!$Label.c.SS_TotalPrice}</th>
+                                    <th>{!$Label.c.SS_FinalAmount}</th>
                                 </tr>
                                 <tr class="slds-line-height_reset">
                                     <td>
@@ -58,30 +58,23 @@
                             <div class="complaintButton">
                                 <table style="width:100%" class="slds-table slds-table_cell-buffer slds-table_bordered">
                                     <tr class="slds-line-height_reset">
-                                        <th>{!$Label.c.SS_Name}</th>
-                                        <th>{!$Label.c.SS_Quantity}</th>
-                                        <th>{!$Label.c.SS_UnitPrice}</th>
-                                        <th>{!$Label.c.SS_TotalPrice}</th>
+                                        <th>{!$Label.c.SS_Titlte}</th>
+                                        <th>{!$Label.c.SS_ProblemDescription}</th>
+                                        <th>{!$Label.c.SS_Status}</th>
+                                        <th>{!$Label.c.SS_Closed}</th>
                                     </tr>
-                                    <aura:iteration items="{!order.OrderItems}" var="item">
+                                    <aura:iteration items="{!order.Complaints__r}" var="comp">
                                         <tr class="slds-line-height_reset">
                                             <td>
-                                                <a href="{!'/sportshop/s/detail/' + item.Product2Id}">
-                                                    {!item.PricebookEntry.Product2.Name}
-                                                </a>
+                                                {!comp.Title__c}
                                             </td>
-                                            <td>{!item.Quantity}</td>
-                                            <td>€{!item.UnitPrice}</td>
-                                            <td>€{!item.TotalPrice}</td>
+                                            <td>{!comp.D__c}</td>
+                                            <td>{!comp.Status__c}</td>
+                                            <td>{!comp.closed__c}</td>
                                         </tr>
                                     </aura:iteration>
                                 </table>
-                                <div class="addComplaintCont">
-                                    <h2>{!$Label.c.SS_MakeComplaint}</h2>
-                                    <lightning:input aura:id="title" name="Title" label="Title" value="{!v.movieReview.Name}" required="true"/>
-                                    <lightning:inputRichText aura:id="description" title="description" disabledCategories="FORMAT_FONT" value="{!v.movieReview.Comment__c}"/>
-                                    <lightning:button label="{!$Label.c.SS_MakeComplaint}" iconName="utility:save" variant="brand" onclick="{!c.onSave}"/>
-                                </div>  
+                                <c:SS_AddComplaintForm orderId="{!order.Id}" />
                             </div>
                         </lightning:tab>
                     </lightning:tabset>

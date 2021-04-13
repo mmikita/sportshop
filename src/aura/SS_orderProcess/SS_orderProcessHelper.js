@@ -3,7 +3,7 @@
         var cart =component.get("v.cartOpp");
         var user =component.get("v.user");
         var orderTake = component.get("c.takeOrder");
-        orderTake.setParams({"opportunity": cart,"user": user,"shipMethod": component.find("shipMethod").get("v.value"),"payMethod": component.find("payMethod").get("v.value")});
+        orderTake.setParams({"user": user,"shipMethod": component.find("shipMethod").get("v.value"),"payMethod": component.find("payMethod").get("v.value")});
         orderTake.setCallback(this,function(response) {
             var state= response.getState();
             if(state==='SUCCESS'){    

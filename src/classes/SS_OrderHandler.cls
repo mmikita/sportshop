@@ -2,7 +2,6 @@ public class SS_OrderHandler {
     
     public static map<String, string> getShippmentsMethods(){
         map<String, string> shipMethodsWithPrice = new map<String, String>();
-        
         Schema.DescribeFieldResult fieldResult = Order.Ship_method__c.getDescribe();
         List<Schema.PicklistEntry> ple = fieldResult.getPicklistValues();
         for( Schema.PicklistEntry pickListVal : ple){
@@ -43,9 +42,7 @@ public class SS_OrderHandler {
         customerOrder.Pricebook2Id = SS_Utils.getSettingValue('standardPriceBookId');
         insert customerOrder;
         List<OrderItem> items = new list<OrderItem>();
-        List<OpportunityLineItem> linesItems = [Select Id,UnitPrice,Quantity, PricebookEntry.Product2Id, PricebookEntry.Id 
-                                                from OpportunityLineItem where OpportunityId = :opportunity.Id];        
-        for(OpportunityLineItem item : linesItems){
+        for(OpportunityLineItem item : opportunity.OpportunityLineItems){
             OrderItem oItem = new OrderItem();
             oItem.OrderId = customerOrder.Id;
             oItem.UnitPrice =  item.UnitPrice;
