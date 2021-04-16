@@ -1,0 +1,34 @@
+<aura:component controller="SS_ComplaintsSectionController">
+    <aura:attribute name="complaints" type="Complaint__c[]"/>  
+    <aura:attribute name="orderId" type="String"/>  
+    <c:SS_ErrorsNotify aura:id="errorsNotify"/>
+    <c:SS_SuccessNotify aura:id="successNotify"/>
+    <div class="complaintButton">
+        <table style="width:100%" class="slds-table slds-table_cell-buffer slds-table_bordered">
+            <tr class="slds-line-height_reset">
+                <th>{!$Label.c.SS_Titlte}</th>
+                <th>{!$Label.c.SS_ProblemDescription}</th>
+                <th>{!$Label.c.SS_Status}</th>
+                <th>{!$Label.c.SS_Closed}</th>
+            </tr>
+            <aura:iteration items="{!v.complaints}" var="comp">
+                <tr class="slds-line-height_reset">
+                    <td>
+                        {!comp.Title__c}
+                    </td>
+                    <td>{!comp.D__c}</td>
+                    <td>{!comp.Status__c}</td>
+                    <td>
+                        <lightning:input type="checkbox" name="blue" checked="{!comp.closed__c}" disabled="true"/>
+                    </td>
+                </tr>
+            </aura:iteration>
+        </table>
+        <div class="addComplaintCont">
+            <h2>{!$Label.c.SS_MakeComplaint}</h2>
+            <lightning:input aura:id="title" name="Title" label="Title"/>
+            <lightning:textarea aura:id="description" title="description"/>
+            <lightning:button label="{!$Label.c.SS_MakeComplaint}" iconName="utility:save"  onclick="{!c.onSave}"/>
+        </div> 
+    </div>
+</aura:component>
