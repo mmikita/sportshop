@@ -1,0 +1,66 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" controller="SS_OrderProcessController">
+    <aura:handler name="init" value="{!this}" action="{!c.getCartItems}"/>
+    <aura:attribute type="String" name="shipMethod"/>
+    <aura:attribute type="Decimal" name="finalAmmount" default="0"/>
+    <aura:attribute type="Opportunity" name="cartOpp"/>
+    <aura:attribute type="User" name="user"/>
+    <aura:attribute type="OpportunityLineItem[]" name="products"/>
+    <aura:attribute name="shipmentsMethods" type="List" />
+    <aura:attribute name="paymentsMethods" type="List" />
+    <aura:attribute name="formIsNotValid" type="Boolean" default="false"/>
+    <c:SS_ErrorsNotify aura:id="errorsNotify"/>
+    <div>
+        <h1 class="orderSummary">{!$Label.c.SS_OrderSummary}</h1>
+        <table style="width:100%" class="slds-table slds-table_cell-buffer slds-table_bordered">
+            <tr class="slds-line-height_reset">
+                <th>{!$Label.c.SS_Name}</th>
+                <th>{!$Label.c.SS_Quantity}</th>
+                <th>{!$Label.c.SS_UnitPrice}</th>
+                <th>{!$Label.c.SS_TotalPrice}</th>
+            </tr>
+            <aura:iteration items="{!v.products}" var="item">
+                <tr class="slds-line-height_reset">
+                    <td>
+                        <a href="{!'/sportshop/s/detail/' + item.Product2Id}">
+                            {!item.ProductName__c}
+                        </a>
+                    </td>
+                    <td>{!item.Quantity}</td>
+                    <td>€{!item.UnitPrice}</td>
+                    <td>€{!item.Subtotal}</td>
+                </tr>
+            </aura:iteration>
+        </table>
+    </div>
+    <div class="Create Order">
+        <lightning:card title="{!$Label.c.SS_MakeAOrder}">
+            <form class="slds-form_stacked">
+                <div class="slds-p-horizontal--small">
+                    <lightning:input aura:id="itemform" required="true" label="{!$Label.c.SS_FirstNameLabel}" value="{!v.user.FirstName}"/>
+                    <lightning:input aura:id="itemform" required="true" label="{!$Label.c.SS_LastNameLabel}" value="{!v.user.LastName}"/>
+                    <lightning:input aura:id="itemform" required="true" label="{!$Label.c.SS_AddressLabel}" value="{!v.user.Street}"/>
+                    <lightning:input aura:id="itemform" required="true" label="{!$Label.c.SS_PostalCodeLabel}" value="{!v.user.PostalCode}"/>
+                    <lightning:input aura:id="itemform" required="true" label="{!$Label.c.SS_CityLabel}" value="{!v.user.City}"/>
+                    <lightning:input aura:id="itemform" required="true" label="{!$Label.c.SS_Country}" value="{!v.user.Country}"/>
+                    <lightning:select aura:id="shipMethod" label="{!$Label.c.SS_ShippingMethod}"  onchange="{!c.onChangeDelivery}">
+                        <aura:iteration items="{!v.shipmentsMethods}" var="ship" indexVar="key">
+                            <br/><br/>
+                            <option value="{!ship.key}" text="{!ship.key +' - €'+ship.value}" onclick="{!c.onChangeDelivery}"/> 
+                        </aura:iteration>
+                    </lightning:select>
+                    <lightning:select aura:id="payMethod" label="{!$Label.c.SS_Paymentmethod}">
+                        <aura:iteration items="{!v.paymentsMethods}" var="pay">
+                            <option value="{!pay}" text="{!pay}" />
+                        </aura:iteration>
+                    </lightning:select>
+                    <div class="finAmmount">
+                        <h3>{!$Label.c.SS_FinalAmount}: €{!v.finalAmmount}</h3>
+                    </div>
+                    <div class="orderActionButtons">
+                        <lightning:button label="{!$Label.c.SS_MakeOrder}" variant="brand" onclick="{!c.handleMakeOrder}"/>
+                    </div>
+                </div>
+            </form>
+        </lightning:card>
+    </div>  
+</aura:component>

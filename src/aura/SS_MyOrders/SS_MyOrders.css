@@ -1,0 +1,42 @@
+.THIS h1 {
+    font-size: 20px;
+    padding-bottom: 10px
+}
+
+.THIS .slds-table th{
+    text-align: center ;
+}
+
+.THIS .slds-table td{
+    text-align: center;
+}
+
+.THIS .orderNumberCont{
+  font-weight: 900;
+  font-size: 14px;  
+}
+
+.THIS .slds-table{
+    border: none;
+}
+
+.THIS .slds-table th{
+    background-color: #0099DE;
+}
+
+.THIS .orderContrainer{
+    margin-bottom: 15px;
+}
+
+.THIS .complaintButton{
+ 
+}
+
+.THIS h2{
+    font-size: 20px;
+}
+
+.THIS .addComplaintCont button{
+    margin-top: 5px;
+    
+}
